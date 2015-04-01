@@ -26,27 +26,21 @@ sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/idrop-web-config2.groovy
 echo "*** Replacing value of HYDRODEV_IRODS_IPADDR with ${1} in /var/lib/irods/.irods/.irodsEnv ***"
 sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/.irodsEnv > /var/lib/irods/.irods/.irodsEnv
 
-# Update host value for hydrodevResc as localhost
-sudo -u irods iadmin modresc hydrodevResc host localhost
+# Restart tomcat server
+sudo /etc/init.d/tomcat stop
+sudo /etc/init.d/tomcat start
+
 
 # Provide instructions to user for use of iDrop Web
 echo "*** Completed ***"
 echo ""
-echo "*** Once system reboots, perform the following: ***"
+echo "*** Wait a moment for the tomcat server to restart, then: ***"
 echo ""
-echo "  1. go to http://${1}/idrop-web2/login/login in your local browser"
+echo "  1. go to http://${1}:8080/idrop-web2/login/login in your local browser"
 echo ""
 echo "  2. Login as:"
 echo "     User Name: hsproxy"
 echo "     Password: proxywater1"
 echo ""
-echo "*** Rebooting VM in 10 seconds to allow new settings to take effect ***"
-
-COUNTDOWN=10
-while [ $COUNTDOWN -gt 0 ]; do
-  echo -n "${COUNTDOWN}.."
-  sleep 1s
-  let COUNTDOWN-=1
-done
-
-shutdown -r now
+echo "*** FINISHED SCRIPT init-hydrodev-irods.sh ***"
+exit;

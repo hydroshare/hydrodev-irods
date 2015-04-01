@@ -2,6 +2,9 @@
 
 # set-hydrodev-irods-adapater.sh
 
+# author: Michael J. Stealey
+# email: michael.j.stealey@gmail.com
+
 if [ ! ${1} ]; then
 	echo "*** Usage: sudo sh set-hydrodev-irods-adapater.sh ADAPTER ***"
 fi
