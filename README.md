@@ -144,9 +144,9 @@ Tomcat started.
 
 ### Boot mode
 
-1. Standard
+1. **Standard** (need to run in this mode for initial setup)
     - Starts the VM and opens a standard terminal interface when the VirtualBox Manager `Start` icon is clicked
-2. Headless
+2. **Headless** (ensure VM is powered off prior to executing)
     - Starts the VM but does not expose a terminal of any kind
     - Command line option using `VBoxManage`
     - For **OS X** use: 
@@ -163,13 +163,14 @@ Tomcat started.
 
 ### Account Information
 
-Pre installed user accounts for managing various aspects of hydrodev-irods
+Pre-installed user accounts for managing various aspects of hydrodev-irods
 
 1. Linux Accounts
     - user: `root`, password: **hydrodev** (root admin account)
     - user: `hydro`, password: **hydro**
+    - user: `irods`, password: **aZ2cXKkKQNKYKHrS** (iRODS admin account)
 2. iRODS Accounts
-    - user: `irods`, password: **aZ2cXKkKQNKYKHrS** (admin account)
+    - user: `irods`, password: **aZ2cXKkKQNKYKHrS** (iRODS admin account)
     - user: `hsproxy`, password: **proxywater1**
 3. tomcat webserver Account
     - user: `admin`, password: **admin** (admin account)
@@ -212,7 +213,7 @@ In order to use this VM with your local HydroShare instance, you will need to mo
         IRODS_AUTH='proxywater1'
         IRODS_GLOBAL_SESSION=True
         ```
-    - Replace `HYDRODEV_IRODS_IP` with the IP Address returned from running the `start-hydrodev-irods.sh` script
+    - Replace `HYDRODEV_IRODS_IP` with the IP Address returned from running the `set-hydrodev-irods-adapter.sh` script
     
 4. Build and deploy HydroShare using the `deploy-hs.sh` script
     - `$ sh deploy-hs.sh`
