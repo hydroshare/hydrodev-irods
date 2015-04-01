@@ -27,7 +27,11 @@ echo "*** Replacing value of HYDRODEV_IRODS_IPADDR with ${1} in /var/lib/irods/.
 sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/.irodsEnv > /var/lib/irods/.irods/.irodsEnv
 
 # Restart tomcat server
+echo "*** Stop tomcat server ***"
+sleep 1
 sudo /etc/init.d/tomcat stop
+echo "*** Start tomcat server using IP Address ${1} ***"
+sleep 1
 sudo /etc/init.d/tomcat start
 
 
