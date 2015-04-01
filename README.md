@@ -142,7 +142,82 @@ Tomcat started.
 *** FINISHED SCRIPT init-hydrodev-irods.sh ***
 ```
 
+### Boot mode
+
+1. Standard
+    - Starts the VM and opens a standard terminal interface when the VirtualBox Manager `Start` icon is clicked
+2. Headless
+    - Starts the VM but does not expose a terminal of any kind
+    - Command line option using `VBoxManage`
+    - For **OS X** use: 
+    
+        ```
+        $ VBoxManage startvm --type headless hydrodev-irods
+        ```
+    - For **Windows** use: 
+    
+        ```
+        > "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" startvm --type headless hydrodev-irods
+        ```
+
+
+### Account Information
+
+Pre installed user accounts for managing various aspects of hydrodev-irods
+
+1. Linux Accounts
+    - user: `root`, password: **hydrodev** (root admin account)
+    - user: `hydro`, password: **hydro**
+2. iRODS Accounts
+    - user: `irods`, password: **aZ2cXKkKQNKYKHrS** (admin account)
+    - user: `hsproxy`, password: **proxywater1**
+3. tomcat webserver Account
+    - user: `admin`, password: **admin** (admin account)
+        - URL: [http://HYDRODEV_IRODS_IPADDR:8080](http://HYDRODEV_IRODS_IPADDR:8080)
+4. iDrop Web2 Account
+    - user: `hsproxy`, password: **proxywater1** (iRODS account)
+        - URL: [http://HYDRODEV_IRODS_IPADDR:8080/idrop-web2/login/login](http://HYDRODEV_IRODS_IPADDR:8080/idrop-web2/login/login) 
+
 ## Additional Developer Information
+
+### HydroShare Configuration
+
+In order to use this VM with your local HydroShare instance, you will need to modify a few of your repository files and then redeploy the application.
+
+1. Use the `Dockerfile` named `Dockerfile.irods` to build in the appropriate iRODS related libraries
+    - `$ cp Dockerfile.irods Dockerfile`
+    
+2. Make sure the `django_irods` app is available in `hydroshare/settings.py`
+    - Open the `hydroshare/settings.py` file
+    - Look in the section labeled `INSTALLED_APPS`
+    - Make sure the line with `"django_irods",` is not commented out
+    
+3. Add the iRODS user information for hs_proxy in `hydroshare/local_settings.py`
+    - Open the `hydroshare/local_settings.py` file
+    - Look in the section labeled `# iRODS proxy user configuration`
+    - Copy the following:
+    
+        ```
+        # iRODS proxy user configuration
+        USE_IRODS=True
+        IRODS_ROOT='/tmp'
+        IRODS_ICOMMANDS_PATH='/usr/bin'
+        IRODS_HOST='HYDRODEV_IRODS_IPADDR'
+        IRODS_PORT='1247'
+        IRODS_DEFAULT_RESOURCE='hydrodevResc'
+        IRODS_HOME_COLLECTION='/hydrodevZone/home/hsproxy'
+        IRODS_CWD='/hydrodevZone/home/hsproxy'
+        IRODS_ZONE='hydrodevZone'
+        IRODS_USERNAME='hsproxy'
+        IRODS_AUTH='proxywater1'
+        IRODS_GLOBAL_SESSION=True
+        ```
+    - Replace `HYDRODEV_IRODS_IP` with the IP Address returned from running the `start-hydrodev-irods.sh` script
+    
+4. Build and deploy HydroShare using the `deploy-hs.sh` script
+    - `$ sh deploy-hs.sh`
+
+
 
 ### Boost Install
 
