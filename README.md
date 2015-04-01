@@ -16,7 +16,7 @@
     - Select `Settings > Network`
     - Set Adapter 1 to be Bridged Adapter
     - Click `OK`
-    - NOTE - You could also generate a new **MAC Address** from here under the **Advaced** options
+    - NOTE - You could also generate a new **MAC Address** from here under the **Advanced** options
 5. Start the VM
     - Click `Start`
 
@@ -28,7 +28,7 @@ Once the VM boots up and presents the login prompt, log in as user `hydro`
 - user: **hydro**
 - pass: **hydro**
 
-The VM needs to have it's network connections configured for the network you are on as well as updating the iRODS and iDrop Web2 configuration files.
+The VM needs to have it's network connections configured for the network you are on as well as updating the iRODS and iDrop Web2 configuration files. Use the `set-hydrodev-irods-adapter.sh` and the `init-hydrodev-irods-vX.XX.sh` scripts where `-vX.XX` corresponds to the version of iRODS being run.
 
 As user `hydro`
 
@@ -40,7 +40,7 @@ sudo sh set-hydrodev-irods-adapter.sh eth1
 
 ifconfig -a
 ... note the IP Address, i.e. 192.168.1.140
-sudo sh init-hydrodev-irods.sh 192.168.1.140
+sudo sh init-hydrodev-irods-v4.03.sh 192.168.1.140
 ```
 
 **Example**
@@ -78,7 +78,7 @@ NM_CONTROLLED=yes
 ONBOOT=yes
 BOOTPROTO=dhcp
 *** Restart network service ***
-Shutting down interface eth2:                              [  OK  ]
+Shutting down interface eth1:                              [  OK  ]
 Shutting down loopback interface:                          [  OK  ]
 Bringing up loopback interface:                            [  OK  ]
 Bringing up interface eth1:
@@ -87,7 +87,7 @@ Determining IP information for eth1... done.
 *** FINISHED SCRIPT set-hydrodev-irods-adapater.sh ***          
 ```
 
-Running the `init-hydrodev-irods.sh` script:
+Running the `init-hydrodev-irods-vX.XX.sh` script:
 
 ```
 $ ifconfig -a
@@ -109,7 +109,7 @@ lo        Link encap:Local Loopback
           collisions:0 txqueuelen:0
           RX bytes:814777 (795.6 KiB)  TX bytes:814777 (795.6 KiB)
 
-$ sudo sh init-hydrodev-irods.sh 192.168.1.140
+$ sudo sh init-hydrodev-irods-v4.03.sh 192.168.1.140
 [sudo] password for hydro:
 *** Using 192.168.1.140 as the IP Address for hydrodev-irods ***
 *** Replacing value of HYDRODEV_IRODS_IPADDR with 192.168.1.140 in /etc/idrop-web/idrop-web-config2.groovy ***
