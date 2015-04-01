@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# init-hydrodev-irods.sh
+# init-hydrodev-irods-v4.03.sh
 
 # author: Michael J. Stealey
 # email: michael.j.stealey@gmail.com
