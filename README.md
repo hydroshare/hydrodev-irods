@@ -8,7 +8,7 @@
 2. Download the most recent **hydrodev-irods-vX.XX-mm-dd-yyyy.ova** file
 3. From VirtualBox
     - Select `File > Import Appliance`
-    - Select the **hydrodev-irods-mm-dd-yyyy.ova** you just downloaded
+    - Select the **hydrodev-irods-vX.XX-mm-dd-yyyy.ova** you just downloaded
     - Check the box **Reinitialize the MAC address of all network cards**
     - Click `Import`
 4. From VirtualBox Manager
