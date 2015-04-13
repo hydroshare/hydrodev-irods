@@ -29,7 +29,7 @@ sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/irods_environment.json.r
 # Replace the following line in /home/hydro/.irods/irods_environment.json
 #irodsHost HYDRODEV_IRODS_IPADDR
 echo "*** Replacing value of HYDRODEV_IRODS_IPADDR with ${1} in /home/hydro/.irods/irods_environment.json ***"
-sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/irods_environment.json.hsproxy > /home/hydro/irods/.irods/irods_environment.json
+sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/irods_environment.json.hsproxy > /home/hydro/.irods/irods_environment.json
 
 # Restart tomcat server
 echo "*** Stop tomcat server ***"
