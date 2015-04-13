@@ -24,7 +24,12 @@ sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/idrop-web-config2.groovy
 # Replace the following line in /var/lib/irods/.irods/.irodsEnv
 #irodsHost HYDRODEV_IRODS_IPADDR
 echo "*** Replacing value of HYDRODEV_IRODS_IPADDR with ${1} in /var/lib/irods/.irods/.irodsEnv ***"
-sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/.irodsEnv > /var/lib/irods/.irods/.irodsEnv
+sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/.irodsEnv.rods > /var/lib/irods/.irods/.irodsEnv
+
+# Replace the following line in /home/hydro/.irods/.irodsEnv
+#irodsHost HYDRODEV_IRODS_IPADDR
+echo "*** Replacing value of HYDRODEV_IRODS_IPADDR with ${1} in /home/hydro/.irods/.irodsEnv ***"
+sed "s/HYDRODEV_IRODS_IPADDR/${1}/g" /var/tmp/initfiles/.irodsEnv.hsproxy > /home/hydro/.irods/.irodsEnv
 
 # Restart tomcat server
 echo "*** Stop tomcat server ***"
